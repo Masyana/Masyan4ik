@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!--
+ /**************************************************************************
+ * ТК№21
+ * https://vk.com/id158458300
+ * @author Бобков Рахим Андреевич (Masyana)
+ * Исип 22/11
+ * 2018-2021г обучения
+**************************************************************************/
+-->
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Игра Морской бой</title>
+<link href="fonts/SegoePrint/fonts.css" rel="stylesheet">
+<link href="seabattle.style.css" rel="stylesheet">
+
+<!-- Icon -->
+<link rel="icon" type="image/png" href="assets/images/icon.png">
+<link href='https://fonts.googleapis.com/css?family=Passion+One|Cantarell:400,400italic,700' rel='stylesheet' type='text/css'>
+
+<!-- начальная загрузка () Bootstrap ) -->
+<link rel="stylesheet" type="text/css" href="../assets/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+
+<!-- button -->
+<link rel="stylesheet" type="text/css" href="../button.css" />
+
+<!-- FontAwesome -->
+<link rel="stylesheet" type="text/css" href="../assets/bower_components/font-awesome/css/font-awesome.min.css" />
+
+<!-- Owl Carousel -->
+<link rel="stylesheet" type="text/css" href="../assets/bower_components/owl.carousel/dist/assets/owl.carousel.min.css" />
+
+<!-- Magnific Popup -->
+<link rel="stylesheet" type="text/css" href="../assets/bower_components/magnific-popup/dist/magnific-popup.css" />
+
+<!-- Главная -->
+<link rel="stylesheet" type="text/css" href="../assets/youplay/css/youplay-anime.min.css" />
+
+<!-- Custom стилиы -->
+<link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
+</head>
+<body>
+
+
+  <!-- (горизонтальное меню) Navbar -->
+  <nav class="navbar-youplay navbar navbar-default navbar-fixed-top navbar-small">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="off-canvas" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Переключить навигацию          </span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index-2.html">
+          <img src="assets/images/logo.png" alt="">
+        </a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="index-2.html#screenshots">Скриншоты</a>
+          </li>
+          <li>
+            <a href="index-2.html#about">О нас</a>
+          </li>
+          <li>
+            <a href="index-2.html#testimonials">Помошники</a>
+          </li>
+          <li>
+            <a href="index-2.html#news">Свежие новости</a>
+          </li>
+          <li>
+            <a href="index-2.html#exclusive">Тест игры!</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- /Navbar -->
+
+
+
+
+<!-- Яндекс.Метрика, счетчик -->
+<script type="text/javascript" > 
+(function (d, w, c) { (w[c] = w[c] || []).push(function() 
+{ try { w.yaCounter45744036 = new Ya.Metrika({ id:45744036, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+ } catch(e) { } }); var n = d.getElementsByTagName("script")[0], 
+ 		s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n);
+ 	 	}; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js";
+   		if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f();
+    	} })(document, window, "yandex_metrika_callbacks");
+	</script>
+	<noscript>
+		<div>
+		<img src="https://mc.yandex.ru/watch/45744036" style="position:absolute; left:-9999px;" alt="" />
+		</div>
+</noscript>
+<!-- /Яндекс.Метрика, счетчик -->
+
+<!--Живая интернет-стойка-->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<script type="text/javascript">
+new Image().src = "//counter.yadro.ru/hit?r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+
+";"+Math.random();
+</script>
+<!--/Живая интернет-стойка-->
+<div id="matrix" style="position: fixed; left:20px; top:50px;"></div>
+<div class="wrap">
+	<div class="battlefield">
+		<div id="text_top" class="text-top"style="color:#030303">Расстановка кораблей</div>
+		<div class="outer clearfix">
+			<!-- пользователь игрового поля-->
+			<div class="field field-user">
+				<div id="field_user" class="ships"></div>
+			</div>
+			<!-- /пользователь игрового поля -->
+
+			<!-- игровое поле комп -->
+			<div class="field field-comp" data-hidden="true">
+				<div id="field_comp" class="ships"></div>
+			</div>
+			<!-- /игровое поле комп -->
+
+			<!-- инструкция -->
+			<div id="instruction" class="instruction" data-hidden="false">
+				<div id="type_placement" class="type-placement-box">
+					1. <span class="link" data-target="random"style="color:#030303">Рандомно</span><br>
+					2. <span class="link" data-target="manually"style="color:#030303">Самостоятельно.</span>
+				</div>
+				<div id="ships_collection" class="ships-collection" data-hidden="true">
+					<p style="color:#030303">Перетащите мышкой корабли на игровое поле. Чтобы установить корабль по вертикали, кликните по нему правой кнопкой мышки.</p>
+					<ul id='initial_ships' class="initial-ships">
+						<li>
+							<div id="fourdeck1" class="ship fourdeck"></div>
+							<div id="tripledeck1" class="ship tripledeck tripledeck1"></div>
+							<div id="tripledeck2" class="ship tripledeck tripledeck2"></div>
+						</li>
+						<li>
+							<div id="doubledeck1" class="ship doubledeck"></div>
+							<div id="doubledeck2" class="ship doubledeck doubledeck2"></div>
+							<div id="doubledeck3" class="ship doubledeck doubledeck3"></div>
+						</li>
+						<li>
+							<div id="singledeck1" class="ship singledeck"></div>
+							<div id="singledeck2" class="ship singledeck singledeck2"></div>
+							<div id="singledeck3" class="ship singledeck singledeck3"></div>
+							<div id="singledeck4" class="ship singledeck singledeck4"></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /инструкция -->
+		</div>
+		<span id="play" class="btn-play" data-hidden="true" style="color:#fd0000">Играть</span>
+		<div id="text_btm" class="text-btm"></div>
+	</div>
+</div>
+
+<script src="seabattle.function.js"></script>
+<!--Живой интернет логотип-->
+<a style="position:absolute; left:-9999px;" href="//www.liveinternet.ru/click"
+target="_blank"><img src="//counter.yadro.ru/logo?16.6"
+title="LiveInternet: показано число просмотров за 24 часа, посетителей за 24 часа и за сегодня"
+alt="" border="0" width="88" height="31"/>
+</a><!--/Живой интернет логотип-->
+
+
+
+  <!-- нижний колонтитул -->
+  <footer class="youplay-footer-parallax">
+	<div class="wrapper" style="background-image: url('assets/images/footer-bg.jpg')">
+
+	  <!-- Соц ссылки  -->
+	  <div class="social">
+		<div class="container">
+		  <h3>Подписывайтесь на нас и узнавайте много нового и интересного! <strong></strong></h3>
+
+		  <div class="social-icons">
+			<div class="social-icon">
+			  <a href="https://www.instagram.com/masyan4eek/?hl=ru">
+				<i class="fa fa-instagram" aria-hidden="true"></i>
+				<span>Лайкайте в Instagram</span>
+			  </a>
+			</div>
+			<div class="social-icon">
+			  <a href="https://vk.com/id158458300">
+				<i class="fa fa-vk"></i>
+				<span>Подписывайтесь в Vk</span>
+			  </a>
+			</div>
+			<div class="social-icon">
+			  <a href="https://www.twitch.tv/masyana_f">
+				<i class="fab fa-twitch"aria-hidden="true"></i>
+				<span>Смотрите на Твиче</span>
+			  </a>
+			</div>
+			<div class="social-icon">
+			  <a href="https://www.youtube.com/channel/UCxcNVqqQDU_IWlhH1By97nQ?view_as=subscriber">
+				<i class="fa fa-youtube-square"></i>
+				<span>Смотрите на Ютубе</span>
+			  </a>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  <!-- /Соц ссылки -->
+
+	  <!-- Copyright -->
+	  <div class="copyright">
+		<div class="container">
+		  <strong>Masyan4ik</strong> &copy; 2020. by Bobkov
+		</div>
+	  </div>
+	  <!-- /Copyright -->
+
+	</div>
+  </footer>
+  <!-- /нижний колонтитул -->
+
+</section>
+<!-- /Основное содержание -->
+
+<!-- Блок поиска-->
+<div class="search-block">
+  <a href="#!" class="search-toggle glyphicon glyphicon-remove"></a>
+  <form action="http://html.nkdev.info/youplay/anime/search.html">
+	<div class="youplay-input">
+	  <input type="text" name="search" placeholder="Search...">
+	</div>
+  </form>
+</div>
+<!-- /Блок поиска-->
+
+<!-- jQuery -->
+<script type="text/javascript" src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
+
+<!-- Шестигранник Прогресс загрузка -->
+<script type="text/javascript" src="../assets/bower_components/HexagonProgress/jquery.hexagonprogress.min.js"></script>
+
+
+<!-- начальная загрузка -->
+<script type="text/javascript" src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- Jarallax -->
+<script type="text/javascript" src="../assets/bower_components/jarallax/dist/jarallax.min.js"></script>
+
+<!-- Гладкая прокрутка -->
+<script type="text/javascript" src="../assets/bower_components/smoothscroll-for-websites/SmoothScroll.js"></script>
+
+<!-- Owl Carousel -->
+<script type="text/javascript" src="../assets/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+
+<!-- обратный отсчет -->
+<script type="text/javascript" src="../assets/bower_components/jquery.countdown/dist/jquery.countdown.min.js"></script>
+
+<!-- Magnific Popup -->
+<script type="text/javascript" src="../assets/bower_components/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+
+<script type="text/javascript" src="../assets/youplay/js/youplay.min.js"></script>
+
+
+<script>
+  if(typeof youplay !== 'undefined') {
+	  youplay.init({
+		  // включить параллакс   (Пояснение: Паралла́кс — изменение видимого положения объекта относительно удалённого фона в зависимости от положения наблюдателя.
+		  //  Зная расстояние между точками наблюдения L и угол смещения α, можно определить расстояние до объекта)
+		  parallax:         true,
+  
+		  // установить небольшую навигационную панель под нагрузкой
+		  navbarSmall:      false,
+  
+// включить эффект затухания между страницами
+		  fadeBetweenPages: true,
+  
+		  // Twitter и Instagram пути PHP
+		  php: {
+			  twitter: './php/twitter/tweet.php',
+			  instagram: './php/instagram/instagram.php'
+		  }
+	  });
+  }
+</script>
+
+</body>
+</html>
